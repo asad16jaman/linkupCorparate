@@ -19,6 +19,26 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get("/",[HomeController::class,"index"])->name("home");
+Route::get("/service",[HomeController::class,"services"])->name("service");
+Route::get("/about",[HomeController::class,"about"])->name("about");
+Route::get("/project",[HomeController::class,"project"])->name("project");
+Route::get("/contact",[HomeController::class,"contact"])->name("contact");
+Route::get("/post",[HomeController::class,"storeContact"])->name("contact.store");
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 Route::prefix('admin')->group(function(){
@@ -38,6 +58,8 @@ Route::prefix('admin')->group(function(){
 Route::group(['prefix'=> '/admin','middleware'=>'checkAdminAuth'], function () {
     Route::get('/',[DashboardController::class,'index'])->name('admin');
 });
+
+
 Route::group(['prefix'=> '/admin','middleware'=>'checkAdminAuth','as'=>'admin.'], function () {
 
     //handling users from admin pannel

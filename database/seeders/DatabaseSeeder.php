@@ -17,13 +17,17 @@ class DatabaseSeeder extends Seeder
         // User::factory(10)->create();
 
        $this->call([
-            SliderSeeder::class
-            // CategorySeeder::class
-            // PhotoGallerySeeder::class
-            // VideoGallerySeeder::class
-            // TeamSeeder::class
-            // ClientSeeder::class
-            // ContactSeeder::class
+        //   UserSeeder::class,
+
+            // SliderSeeder::class,
+            // CategorySeeder::class,
+            // PhotoGallerySeeder::class,
+            // VideoGallerySeeder::class,
+            TeamSeeder::class,
+            ClientSeeder::class,
+            ContactSeeder::class,
+            
+            // ProductSeeder::class,
        ]);
     }
 }

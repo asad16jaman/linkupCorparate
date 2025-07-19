@@ -28,5 +28,41 @@ class HomeController extends Controller
         return view("user.home",compact(['carousels','about','services','projects','teams','clients']));
     }
 
+    public function about(){
+
+        $about = About::all()->first();
+        $teams = Team::all();
+
+        return view('user.about',compact(['about','teams']));
+    }
+
+    public function services(){
+
+        
+        $services = Category::all();
+        
+        $clients = Client::all();
+
+        return view('user.service',compact(['services','clients']));
+    }
+
+    public function project(){
+
+        $projects = Product::with('image')->get();
+        return view('user.project',compact(['projects']));
+    }
+
+    public function contact(){
+
+        
+    }
+
+
+    public function storeContact(Request $request){
+
+        return "post asce...";
+    }
+    
+
 
 }

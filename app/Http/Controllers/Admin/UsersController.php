@@ -15,9 +15,6 @@ class UsersController extends Controller
 
     public function index(Request $request,?int $id = null ){
 
-        $numberOfItem = $request->query("numberOfItem");
-
-        
 
         $editUser = null;
         if( $id != null ){
@@ -26,27 +23,23 @@ class UsersController extends Controller
 
         $searchValue = request()->query("search",null);
         if( $searchValue != null ){
-            $allUsers = User::where("username","like","%".$searchValue."%")->orderBy('id','desc')->cursorPaginate($numberOfItem);
+            $allUsers = User::where("username","like","%".$searchValue."%")->orderBy('id','desc')->simplePaginate(3);
         }else{
-            $allUsers = User::orderBy('id','desc')->cursorPaginate($numberOfItem);
+            $allUsers = User::orderBy('id','desc')->simplePaginate(3);
         };
-        // return response()->json([
-        //     'urlpageitem' => $numberOfItem,
-        //     'data' => $allUsers
-        // ]);
+        
         return view("admin.users",compact(['allUsers','editUser']));
     }
 
 
     public function storeUser(Request $request,? int $id = null){
+
+        $data = $request->only(['username','email','type','fullname']);
         
         if( $id != null ){
-            //user edit section is hare
-            $data = [
-                'email' => $request->email,
-                'type' => $request->type,
-                'fullname' => $request->fullname
-            ];
+
+            unset($data['username']);
+            
             //
             if(trim($request->password) != ''){
                 $data['password'] = Hash::make($request->password);
@@ -57,31 +50,31 @@ class UsersController extends Controller
 
             if($request->hasFile('picture')){
 
-            //delete if user already have profile picture...
-            if( $currentEditUser->picture != null ){
-                Storage::delete($currentEditUser->picture);
+                //delete if user already have profile picture...
+                if( $currentEditUser->picture != null ){
+                    Storage::delete($currentEditUser->picture);
 
-            }
+                }
 
 
-            $path = $request->file('picture')->store('profile');
-            $data['picture'] = $path;
+                $path = $request->file('picture')->store('profile');
+                $data['picture'] = $path;
             }
 
             User::where('id','=',$id)->update($data);
-            return redirect()->route('admin.users')->with("success","Successfully Edit the user");
+            return redirect()->route('admin.users',['page'=>request()->query('page'),'search'=>request()->query('search')])->with("success","Successfully Edit the user");
         }
 
-
-        $allData = $request->except("_token",'picture');
+        $data['password'] = $request->password;
 
         if($request->hasFile('picture')){
             $path = $request->file('picture')->store('profile');
-            $allData['picture'] = $path;
+            $data['picture'] = $path;
         }
 
 
-        User::create($allData);
+
+        User::create($data);
         
         return back()->with("success","Successfully added the user");
     }
@@ -90,6 +83,10 @@ class UsersController extends Controller
 
         $user = User::find($id);
         if($user){
+            if( $user->picture != null ){
+                    Storage::delete($user->picture);
+
+                }
             $user->delete();
             return back()->with("success","successfully deleted user");
         }

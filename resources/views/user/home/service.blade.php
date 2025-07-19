@@ -15,8 +15,8 @@
                             </div>
                             <div class="service-content text-center p-4">
                                 <div class="service-content-inner">
-                                    <a href="#" class="h4 mb-4 d-inline-flex text-start"><i class="fas fa-donate fa-2x me-2"></i> {{ $service->name }}</a>
-                                    <p class="mb-4"> {{ $service->description }}
+                                    <a href="#" class="h4 mb-4 d-inline-flex text-start"><i class="fas fa-donate fa-2x me-2"></i> {{ substr($service->name,0,30) }}</a>
+                                    <p class="mb-4"> {{ substr($service->description,0,100) }}
                                     </p>
                                     <a class="btn btn-light rounded-pill py-2 px-4" href="#">Read More</a>
                                 </div>

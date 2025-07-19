@@ -15,7 +15,7 @@ class ProductController extends Controller
 
     public function index(?int $id = null){
 
-        $numberOfItem = request()->query("numberOfItem",3);
+       
         $searchValue = request()->query("search",null);
 
         $editItem = null;
@@ -26,19 +26,20 @@ class ProductController extends Controller
         $categories = Category::all();
 
         if( $searchValue != null ){
-            $products = Product::with('category')->where("name","like","%".$searchValue."%")->orderBy('id','desc')->cursorPaginate($numberOfItem);
+            $products = Product::with('category')->where("name","like","%".$searchValue."%")->orderBy('id','desc')->simplePaginate(3);
         }else{
-            $products = Product::with('category')->cursorPaginate($numberOfItem);
+            $products = Product::with('category')->simplePaginate(3);
         }; 
         return view('admin.product',compact(['categories','products','editItem']));
     }
 
     public function store(Request $request,?int $id=null){
+
         $data = $request->only(['name','description','logn_description','category_id']);
 
         if(!is_null($id)){
             Product::where('id',$id)->update($data);
-            return redirect()->route('admin.product')->with('success','Successfully edit');
+            return redirect()->route('admin.product',['page'=>request()->query('page'),'search'=>request()->query('search')])->with('success','Successfully edit');
         }
 
         //creating product

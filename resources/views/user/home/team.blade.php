@@ -22,7 +22,7 @@
                             </div>
                             <div class="team-content bg-dark text-center rounded-bottom p-4">
                                 <div class="team-content-inner rounded-bottom">
-                                    <h4 class="text-white">{{ $team->name }}</h4>
+                                    <h4 class="text-white">{{ substr($team->name,0,15) }}</h4>
                                     <p class="text-muted mb-0">{{ $team->designation }}</p>
                                 </div>
                             </div>

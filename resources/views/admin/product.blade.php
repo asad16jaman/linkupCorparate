@@ -193,23 +193,12 @@
                             <div class="table-responsive">
                                 <div id="basic-datatables_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4">
                                     <div class="row">
-                                        <div class="col-sm-12 col-md-6">
-                                            <div class="dataTables_length" id="basic-datatables_length">
-                                                <label>Show <select
-                                                        name="basic-datatables_length" aria-controls="basic-datatables"
-                                                        class="form-control form-control-sm" onchange="perpageItem(this)">
-                                                        <option value="3" >3</option>
-                                                        <option value="4" @selected( request()->query('numberOfItem') == 4 )>4</option>
-                                                        <option value="50" @selected(request()->query('numberOfItem') == 50)>50</option>
-                                                        <option value="100" @selected(request()->query('numberOfItem') == 100) >100</option>
-                                                    </select> entries</label>
-                                                </div>
-                                        </div>
-                                        <div class="col-sm-12 col-md-6">
+                                        
+                                        <div class="col-sm-12 col-md-6 offset-md-6">
                                             <div id="basic-datatables_filter" class="dataTables_filter">
                                                 <label class="d-flex justify-content-end">Search:
-                                                    <form id="searchform">
-                                                        @csrf
+                                                    <form>
+                                                        
                                                         <input type="search" value="{{ request()->query('search') }}" name="search" class="form-control form-control-sm"
                                                             placeholder="" aria-controls="basic-datatables">
                                                     </form>
@@ -250,7 +239,7 @@
                                                         <td><a href="">Image</a></td>
                                                         <td class="d-flex justify-content-center">
                                                             
-                                                            <a href="{{ route('admin.product',['id'=> $product->id]) }}" class="btn btn-info p-1 me-1">
+                                                            <a href="{{ route('admin.product',['id'=> $product->id,'page'=>request()->query('page'),'search'=>request()->query('search')]) }}" class="btn btn-info p-1 me-1">
                                                                 <i class="fas fa-edit iconsize"></i>
                                                             </a>
 
@@ -273,24 +262,18 @@
                                         </div>
                                     </div>
 
-                                    <div class="row">
-                                        <div class="col-12">
-                                            <div class="d-flex justify-content-end">
-                                                @php
-                                                    $nextCursor = $products->nextCursor()?->encode();
-                                                    $prevCursor = $products->previousCursor()?->encode();
-                                                @endphp
+                                   <div class="row">
+                                        <div class="col-12 d-flex justify-content-end me-2">
+                                            @if ($products->previousPageUrl())
+                                                <a href="{{ $products->previousPageUrl() }}"
+                                                    class="btn btn-primary mx-2 p-1"><i class="fas fa-hand-point-left"></i></a>
+                                            @endif
 
-                                                {{-- Previous Button --}}
-                                                @if($prevCursor)
-                                                    <a href="{{ request()->fullUrlWithQuery(['cursor' => $prevCursor]) }}" class="btn btn-primary p-1">« Previous</a>
-                                                @endif
+                                            @if ($products->nextPageUrl())
+                                                <a href="{{ $products->nextPageUrl() }}" class="btn btn-primary mx-2 p-1"><i
+                                                        class="fas fa-hand-point-right "></i></a>
+                                            @endif
 
-                                                {{-- Next Button --}}
-                                                @if($nextCursor)
-                                                    <a href="{{ request()->fullUrlWithQuery(['cursor' => $nextCursor]) }}" class="btn btn-primary mx-3 p-1">Next »</a>
-                                                @endif
-                                            </div>
                                         </div>
                                     </div>
 
@@ -309,39 +292,8 @@
 
 @push('script')
 <script>
-    function perpageItem(d){
-        let itemNumber = d.value;
-        let baseUrl = "{{ url()->current() }}"; // current route path without query
+    
 
-        const url = new URL(baseUrl, window.location.origin);
-        @foreach(request()->query() as $key => $value)
-            @if($key !== 'numberOfItem')
-                url.searchParams.set('{{ $key }}', '{{ $value }}');
-            @endif
-        @endforeach
-
-        url.searchParams.set('numberOfItem', itemNumber);
-        window.location.href = url.toString();
-    }
-
-
-   
-
-    document.getElementById('searchform').addEventListener('submit',function(e){
-        e.preventDefault();
-        let searchValue = e.target['search'].value ; 
-        let baseUrl = "{{ url()->current() }}"; // current route path without query
-
-        const url = new URL(baseUrl, window.location.origin);
-        @foreach(request()->query() as $key => $value)
-            @if($key !== 'search')
-                url.searchParams.set('{{ $key }}', '{{ $value }}');
-            @endif
-        @endforeach
-       
-        url.searchParams.set('search', searchValue);
-        window.location.href = url.toString();
-    })
 
     @if($editItem == null)
     //handle product multiple image start hare........................................

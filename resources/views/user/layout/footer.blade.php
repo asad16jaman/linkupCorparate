@@ -5,7 +5,7 @@
                         <div class="footer-item d-flex flex-column">
                             <div class="footer-item">
                                 <h4 class="text-white mb-4">Newsletter</h4>
-                                <p class="mb-3">Dolor amet sit justo amet elitr clita ipsum elitr est.Lorem ipsum dolor sit amet, consectetur adipiscing elit consectetur adipiscing elit.</p>
+                                <p class="mb-3">{{ $company->footer_text }}</p>
                                 <div class="position-relative mx-auto rounded-pill">
                                     <input class="form-control rounded-pill w-100 py-3 ps-4 pe-5" type="text" placeholder="Enter your email">
                                     <button type="button" class="btn btn-primary rounded-pill position-absolute top-0 end-0 py-2 mt-2 me-2">SignUp</button>
@@ -28,16 +28,16 @@
                     <div class="col-md-6 col-lg-6 col-xl-3">
                         <div class="footer-item d-flex flex-column">
                             <h4 class="text-white mb-4">Contact Info</h4>
-                            <a href=""><i class="fa fa-map-marker-alt me-2"></i> 123 Street, New York, USA</a>
-                            <a href=""><i class="fas fa-envelope me-2"></i> info@example.com</a>
-                            <a href=""><i class="fas fa-envelope me-2"></i> info@example.com</a>
-                            <a href=""><i class="fas fa-phone me-2"></i> +012 345 67890</a>
-                            <a href="" class="mb-3"><i class="fas fa-print me-2"></i> +012 345 67890</a>
+                            <a href="#"><i class="fa fa-map-marker-alt me-2"></i>{{ $company->address }}</a>
+                            <a href="#"><i class="fas fa-envelope me-2"></i> {{ $company->email }}</a>
+                            <a href=""><i class="fas fa-envelope me-2"></i> {{ $company->email2 }}</a>
+                            <a href=""><i class="fas fa-phone me-2"></i>{{ $company->phone }}</a>
+                            <a href="" class="mb-3"><i class="fas fa-print me-2"></i>{{ $company->phone2 }}</a>
                             <div class="d-flex align-items-center">
-                                <a class="btn btn-light btn-md-square me-2" href=""><i class="fab fa-facebook-f"></i></a>
-                                <a class="btn btn-light btn-md-square me-2" href=""><i class="fab fa-twitter"></i></a>
-                                <a class="btn btn-light btn-md-square me-2" href=""><i class="fab fa-instagram"></i></a>
-                                <a class="btn btn-light btn-md-square me-0" href=""><i class="fab fa-linkedin-in"></i></a>
+                                <a class="btn btn-light btn-md-square me-2" href="{{ $company->facebook }}"><i class="fab fa-facebook-f"></i></a>
+                                <a class="btn btn-light btn-md-square me-2" href="{{ $company->whatsapp  }}"><i class="fab fa-whatsapp"></i></a>
+                                <a class="btn btn-light btn-md-square me-2" href="{{ $company->instagram  }}"><i class="fab fa-instagram"></i></a>
+                                <a class="btn btn-light btn-md-square me-0" href="{{ $company->linkdin  }}"><i class="fab fa-linkedin-in"></i></a>
                             </div>
                         </div>
                     </div>

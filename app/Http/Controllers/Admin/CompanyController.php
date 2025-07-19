@@ -43,11 +43,15 @@ class CompanyController extends Controller
                 Storage::delete($company->logo);
             }
 
-            $path = $request->file('logo')->store('company');
-            $companyData['logo'] = $path;
+            if($request->hasFile('logo') && $company->logo != null){
+                $path = $request->file('logo')->store('company');
+                $companyData['logo'] = $path;
+            }
+
+            
 
             // return response()->json($companyData);
-            unset($companyData['_token']);
+            // unset($companyData['_token']);
 
             Company::where('id','=',$company->id)->update($companyData);
 
