@@ -34,6 +34,17 @@ class UsersController extends Controller
 
     public function storeUser(Request $request,? int $id = null){
 
+        $valRule = [
+            'username' => ['required', 'string', 'unique:users,username'],
+            'email' => ['required', 'email'],
+            'type' => ['required', 'in:customer,admin'], 
+            
+        ] ;
+        if( $id = null ){
+            $valRule['password'] = 'required';
+        }
+        $request->validate($valRule);
+
         $data = $request->only(['username','email','type','fullname']);
         
         if( $id != null ){

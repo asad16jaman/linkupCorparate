@@ -60,8 +60,12 @@
                                         </div>
                                     </div>
                                     <div class="col-md-9 col-12">
-                                        <input type="text" class="form-control p-1"  name="title" value="{{ $editgallery ? $editgallery->title :"" }}"
+                                        <input type="text" class="form-control p-1 @error('title') is-invalid
+                                        @enderror"  name="title" value="{{ $editgallery ? $editgallery->title :"" }}"
                                             placeholder="Enter Full Name">
+                                        @error('title')
+                                            <p class="text-danger">{{ $message }}</p>
+                                        @enderror
                                     </div>
                                 </div>
 
@@ -73,7 +77,12 @@
                                         </div>
                                     </div>
                                     <div class="col-md-9 col-12">
-                                        <textarea class="form-control" name="description" placeholder="" id="comment" rows="3">{{ $editgallery ? $editgallery->description : '' }}</textarea>
+                                        <textarea class="form-control @error('description') is-invalid
+                                        @enderror" name="description" placeholder="" id="comment" rows="3">{{ $editgallery ? $editgallery->description : '' }}</textarea>
+
+                                         @error('description')
+                                            <p class="text-danger">{{ $message }}</p>
+                                        @enderror
                                     </div>
                                 </div>
 
@@ -89,7 +98,7 @@
                                          <label for="imageInput" style="cursor: pointer;">
                                             <!-- (placeholder) -->
                                             <img id="previewImage" 
-                                                src="{{ $editgallery ? asset('storage/'.$editgallery->img) :  asset('assets/admin/img/demoProfile.png') }}" 
+                                                src="{{ $editgallery ? asset('storage/'.$editgallery->img) :   asset('assets/admin/img/demoUpload.jpg') }}" 
                                                 alt="Demo Image" 
                                                 class="profileImg"
                                                 style="">
@@ -98,6 +107,9 @@
                                         <!-- hidden input -->
                                         <input type="file" name="img" id="imageInput" name="image" accept="image/*" style="display: none;">
                                     </div>
+                                    @error('img')
+                                            <p class="text-danger text-center">{{ $message }}</p>
+                                        @enderror
                                 </div>
                             </div>
                             </div>

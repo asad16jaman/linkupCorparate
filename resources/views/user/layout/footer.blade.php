@@ -6,23 +6,23 @@
                             <div class="footer-item">
                                 <h4 class="text-white mb-4">Newsletter</h4>
                                 <p class="mb-3">{{ $company->footer_text }}</p>
-                                <div class="position-relative mx-auto rounded-pill">
+                                <!-- <div class="position-relative mx-auto rounded-pill">
                                     <input class="form-control rounded-pill w-100 py-3 ps-4 pe-5" type="text" placeholder="Enter your email">
                                     <button type="button" class="btn btn-primary rounded-pill position-absolute top-0 end-0 py-2 mt-2 me-2">SignUp</button>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
                     </div>
                     <div class="col-md-6 col-lg-6 col-xl-3">
                         <div class="footer-item d-flex flex-column">
                             <h4 class="text-white mb-4">Explore</h4>
-                            <a href="#"><i class="fas fa-angle-right me-2"></i> Home</a>
-                            <a href="#"><i class="fas fa-angle-right me-2"></i> Services</a>
-                            <a href="#"><i class="fas fa-angle-right me-2"></i> About Us</a>
-                            <a href="#"><i class="fas fa-angle-right me-2"></i> Latest Projects</a>
-                            <a href="#"><i class="fas fa-angle-right me-2"></i> testimonial</a>
-                            <a href="#"><i class="fas fa-angle-right me-2"></i> Our Team</a>
-                            <a href="#"><i class="fas fa-angle-right me-2"></i> Contact Us</a>
+                            <a href="{{ route('home') }}"><i class="fas fa-angle-right me-2"></i> Home</a>
+                            <a href="{{ route('service') }}"><i class="fas fa-angle-right me-2"></i> Services</a>
+                            <a href="{{ route('about') }}"><i class="fas fa-angle-right me-2"></i> About Us</a>
+                            <a href="{{ route('project') }}"><i class="fas fa-angle-right me-2"></i> Latest Projects</a>
+                            <a href="{{ route('testimonial') }}"><i class="fas fa-angle-right me-2"></i> testimonial</a>
+                            <a href="{{ route('team') }}"><i class="fas fa-angle-right me-2"></i> Our Team</a>
+                            <a href="{{ route('contact') }}"><i class="fas fa-angle-right me-2"></i> Contact Us</a>
                         </div>
                     </div>
                     <div class="col-md-6 col-lg-6 col-xl-3">
@@ -52,9 +52,7 @@
                                 <p class="text-uppercase text-primary mb-2">Business</p>
                                 <a href="#" class="text-body">Dimensional Fund Advisors Interview with Director</a>
                             </div>
-                            <div class="footer-btn text-start">
-                                <a href="#" class="btn btn-light rounded-pill px-4">View All Post <i class="fa fa-arrow-right ms-1"></i></a>
-                            </div>
+                            
                         </div>
                     </div>
                 </div>

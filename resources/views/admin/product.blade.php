@@ -71,7 +71,7 @@
 
             <div class="card mb-1">
                 <div class="card-header pt-1 pb-0">
-                    <h4 class="text-center">Create Service</h4>
+                    <h4 class="text-center">Create Project</h4>
                 </div>
                 <form method="post" id="productForm" enctype="multipart/form-data">
                     @csrf

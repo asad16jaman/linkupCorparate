@@ -1,9 +1,9 @@
 <!-- Team Start -->
-        <div class="container-fluid team pb-5">
+        <div class="container-fluid team pb-2">
             <div class="container pb-5">
                 <div class="text-center mx-auto pb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 800px;">
                     <h4 class="text-primary">Our Team</h4>
-                    <h1 class="display-4">Our Investa Company Dedicated Team Member</h1>
+                    <h1 class="display-5">Our Investa Company Dedicated Team Member</h1>
                 </div>
                 <div class="row g-4 justify-content-center">
                     @foreach ($teams as $team)

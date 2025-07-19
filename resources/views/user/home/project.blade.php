@@ -1,8 +1,8 @@
 <div class="container-fluid project">
             <div class="container">
-                <div class="text-center mx-auto pb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 800px;">
+                <div class="text-center mx-auto pb-2 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 800px;">
                     <h4 class="text-primary">Our Projects</h4>
-                    <h1 class="display-4">Explore Our Latest Projects</h1>
+                    <h1 class="display-5">Explore Our Latest Projects</h1>
                 </div>
                 <div class="project-carousel owl-carousel wow fadeInUp" data-wow-delay="0.1s">
                     @foreach ($projects as $project)

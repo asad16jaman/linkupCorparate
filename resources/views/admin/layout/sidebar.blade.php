@@ -40,14 +40,14 @@
               </li>
               <li class="nav-item">
                 <a href="{{ route('admin.slider') }}">
-                  <i class="fas fa-wallet"></i>
+                  <i class="fas fa-sliders-h"></i>
                   <p>Slider</p>
                  
                 </a>
               </li>
               <li class="nav-item">
                 <a href="{{ route('admin.category') }}">
-                  <i class="fas fa-th-large"></i>
+                  <i class="fas fa-concierge-bell"></i>
                   <p>Service</p>
                  
                 </a>
@@ -55,7 +55,7 @@
 
               <li class="nav-item">
                 <a href="{{ route('admin.product') }}">
-                  <i class="fas fa-th-large"></i>
+                  <i class="fas fa-project-diagram"></i>
                   <p>Project</p>
                  
                 </a>
@@ -63,7 +63,7 @@
               
               <li class="nav-item">
                 <a data-bs-toggle="collapse" href="#sidebarLayouts">
-                  <i class="fas fa-box-open"></i>
+                  <i class="fas fa-images"></i>
                   <p>Gallery</p>
                   <span class="caret"></span>
                 </a>
@@ -85,14 +85,14 @@
               
               <li class="nav-item">
                 <a href="{{ route('admin.team') }}">
-                  <i class="fas fa-shopping-cart"></i>
+                  <i class="fas fa-users"></i>
                   <p>Teams</p>
                 </a>
               </li>
 
               <li class="nav-item">
                 <a href="{{ route('admin.client') }}">
-                  <i class="fas fa-warehouse"></i>
+                  <i class="fas fa-handshake"></i>
                   <p>Clients</p>
                   <span class="badge badge-success">4</span>
                 </a>
@@ -101,7 +101,7 @@
               @can('viewAny' ,Auth()->user()) 
               <li class="nav-item">
                 <a href="{{ route('admin.users') }}">
-                   <i class="fas fa-users"></i>
+                   <i class="fas fa-user-friends"></i>
                   <p>Users</p>
                   
                 </a>
@@ -110,20 +110,20 @@
               
               <li class="nav-item">
                 <a href="{{ route('admin.company') }}">
-                  <i class="fas fa-wallet"></i>
+                  <i class="fas fa-building"></i>
                   <p>Company</p>
                   
                 </a>
               </li>
               <li class="nav-item">
                 <a href="{{ route('admin.about') }}">
-                  <i class="fas fa-wallet"></i>
+                  <i class="fas fa-info-circle"></i>
                   <p>About Us</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="{{ route('admin.message') }}">
-                  <i class="fas fa-wallet"></i>
+                  <i class="fas fa-envelope"></i>
                   <p>Contact</p>
                 </a>
               </li>

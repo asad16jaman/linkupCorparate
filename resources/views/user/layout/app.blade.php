@@ -25,11 +25,27 @@
         <link href="{{ asset('assets/user/lib/lightbox/css/lightbox.min.css') }}" rel="stylesheet">
 
 
+        <link
+      rel="icon"
+      href="{{ asset('assets/admin/img/titleicon.svg') }}" 
+      type="image/x-icon"
+    />
         <!-- Customized Bootstrap Stylesheet -->
         <link href="{{ asset('assets/user/css/bootstrap.min.css') }}" rel="stylesheet">
 
         <!-- Template Stylesheet -->
         <link href="{{ asset('assets/user/css/style.css') }}" rel="stylesheet">
+        <style>
+            .topbar{}
+            .topbar > div{}
+            .topbar > div > a{
+                color:#fff
+            }
+            .topbar > div > a > i{}
+
+            
+        </style>
+        @yield('style')
     </head>
 
     <body>
@@ -49,7 +65,7 @@
 
 
         <!-- Navbar & Hero Start -->
-        @include('user.layout.navbar')
+            @yield('navbar')
         <!-- Navbar & Hero End -->
 
     
@@ -66,15 +82,10 @@
         <div class="container-fluid copyright py-4">
             <div class="container">
                 <div class="row g-4 align-items-center">
-                    <div class="col-md-6 text-center text-md-start mb-md-0">
-                        <span class="text-body"><a href="#" class="border-bottom text-primary"><i class="fas fa-copyright text-light me-2"></i>Your Site Name</a>, All right reserved.</span>
+                    <div class="col-md-6 offset-md-3 text-center text-md-center mb-md-0">
+                        <span class="text-body"><a href="#" class="border-bottom text-primary"><i class="fas fa-copyright text-light me-2"></i>Link Up Technology</a>, All right reserved.</span>
                     </div>
-                    <div class="col-md-6 text-center text-md-end text-body">
-                        <!--/*** This template is free as long as you keep the below author’s credit link/attribution link/backlink. ***/-->
-                        <!--/*** If you'd like to use the template without the below author’s credit link/attribution link/backlink, ***/-->
-                        <!--/*** you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". ***/-->
-                        Designed By <a class="border-bottom text-primary" href="https://htmlcodex.com">HTML Codex</a> Distributed By <a class="border-bottom text-primary" href="https://themewagon.com">ThemeWagon</a>
-                    </div>
+                   
                 </div>
             </div>
         </div>

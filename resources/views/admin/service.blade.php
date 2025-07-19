@@ -62,8 +62,12 @@
                                         </div>
                                     </div>
                                     <div class="col-md-9 col-12">
-                                        <input type="text" class="form-control p-1"  name="name" value="{{ $editCategory ? $editCategory->name :"" }}"
+                                        <input type="text" class="form-control p-1 @error('name') is-invalid
+                                        @enderror"  name="name" value="{{ $editCategory ? $editCategory->name :"" }}"
                                             placeholder="Enter Full Name">
+                                        @error('name')
+                                            <p class="text-danger">{{ $message }}</p>
+                                        @enderror
                                     </div>
                                 </div>
 
@@ -75,7 +79,11 @@
                                         </div>
                                     </div>
                                     <div class="col-md-9 col-12">
-                                        <textarea class="form-control" name="description" placeholder="" id="comment" rows="3">{{ $editCategory ? $editCategory->description : '' }}</textarea>
+                                        <textarea class="form-control  @error('description') is-invalid
+                                        @enderror" name="description" placeholder="" id="comment" rows="3">{{ $editCategory ? $editCategory->description : '' }}</textarea>
+                                        @error('description')
+                                            <p class="text-danger">{{ $message }}</p>
+                                        @enderror
                                     </div>
                                 </div>
 
@@ -91,7 +99,7 @@
                                          <label for="imageInput" style="cursor: pointer;">
                                             <!-- (placeholder) -->
                                             <img id="previewImage" 
-                                                src="{{ $editCategory ? asset('storage/'.$editCategory->img) :  asset('assets/admin/img/demoProfile.png') }}" 
+                                                src="{{ $editCategory ? asset('storage/'.$editCategory->img) :  asset('assets/admin/img/demoUpload.jpg') }}" 
                                                 alt="Demo Image" 
                                                 class="profileImg"
                                                 style="">
@@ -100,6 +108,9 @@
                                         <!-- hidden input -->
                                         <input type="file" name="img" id="imageInput" name="image" accept="image/*" style="display: none;">
                                     </div>
+                                    @error('description')
+                                            <p class="text-danger text-center">{{ $message }}</p>
+                                        @enderror
                                 </div>
 
 

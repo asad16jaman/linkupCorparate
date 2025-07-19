@@ -3,6 +3,32 @@
     home page
 @endsection
 
+@section('style')
+<style>
+     .header-carousel-item {
+    height: 85vh;
+    position: relative;
+}
+.header-carousel-item-img-1 img {
+    height: 100%;
+    object-fit: cover; 
+}
+
+.servicHeader{
+     font-size: 20px;
+}
+
+.serviceletter{
+     font-size: 15px;
+}
+</style>
+
+@endsection
+
+@section('navbar')
+     @include('user.layout.navbar',['page'=>'home'])
+@endsection
+
 @section('maincontent')
 
         <!-- Carousel Start -->

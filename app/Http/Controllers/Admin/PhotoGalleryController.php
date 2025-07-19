@@ -37,6 +37,11 @@ class PhotoGalleryController extends Controller
 
     public function store(Request $request, ?int $id = null)
     {
+        $request->validate([
+            'title'=> 'required',
+            'description'=> 'required',
+            'img' => "required|image|mimes:jpeg,jpg,png,gif,webp,svg|max:2048"
+        ]);
 
         $data = $request->only(['title', 'description']);
 

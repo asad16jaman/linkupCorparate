@@ -1,11 +1,11 @@
 <!-- FAQ Start -->
-        <div class="container-fluid faq py-5">
+        <div class="container-fluid faq py-2">
             <div class="container py-5">
                 <div class="row g-5 align-items-center">
                     <div class="col-lg-6 wow fadeInLeft" data-wow-delay="0.1s">
                         <div class="pb-5">
                             <h4 class="text-primary">FAQs</h4>
-                            <h1 class="display-4">Get the Answers to Common Questions</h1>
+                            <h1 class="display-5">Get the Answers to Common Questions</h1>
                         </div>
                        <div class="accordion bg-light rounded p-4" id="accordionExample">
                             <div class="accordion-item border-0 mb-4">
@@ -64,8 +64,8 @@
                     </div>
                     <div class="col-lg-6 wow fadeInRight" data-wow-delay="0.3s">
                         <div class="faq-img RotateMoveRight rounded">
-                            <img src="img/faq-img.jpg" class="img-fluid rounded w-100" alt="Image">
-                            <a class="faq-btn btn btn-primary rounded-pill text-white py-3 px-5" href="#">Read More Q & A <i class="fas fa-arrow-right ms-2"></i></a>
+                            <img src="{{ asset("assets/user/img/faq-img.jpg") }}" class="img-fluid rounded w-100" alt="Image">
+                           
                         </div>
                     </div>
                 </div>

@@ -42,7 +42,7 @@
 
             <div class="card">
                 <div class="card-header pt-1 pb-0">
-                    <h4 class="text-center">Create Category</h4>
+                    <h4 class="text-center">Create Client</h4>
                 </div>
                 <form method="post" enctype="multipart/form-data">
                     @csrf
@@ -60,8 +60,12 @@
                                         </div>
                                     </div>
                                     <div class="col-md-9 col-12">
-                                        <input type="text" class="form-control p-1"  name="name" value="{{ $editclient ? $editclient->name : '' }}"
+                                        <input type="text" class="form-control p-1 @error('name') is-invalid
+                                        @enderror"  name="name" value="{{ $editclient ? $editclient->name : '' }}"
                                             placeholder="Enter Full Name">
+                                        @error('name')
+                                            <p class="text-danger">{{ $message }}</p>
+                                        @enderror
                                     </div>
                                 </div>
 
@@ -92,8 +96,12 @@
                                         </div>
                                     </div>
                                     <div class="col-md-9 col-12">
-                                        <input type="text" class="form-control p-1"  name="profession" value="{{ $editclient ? $editclient->profession : '' }}"
+                                        <input type="text" class="form-control p-1 @error('profession') is-invalid
+                                        @enderror"  name="profession" value="{{ $editclient ? $editclient->profession : '' }}"
                                             placeholder="Enter Profession">
+                                        @error('profession')
+                                            <p class="text-danger">{{ $message }}</p>
+                                        @enderror
                                     </div>
                                 </div>
                         
@@ -111,6 +119,9 @@
                                                     <!-- hidden input -->
                                                     <input type="file" name="photo" id="imageInput" accept="image/*" style="display: none;">
                                                 </div>
+                                                @error('photo')
+                                            <p class="text-danger text-center">{{ $message }}</p>
+                                        @enderror
                                             </div>
                             </div>
                         </div>

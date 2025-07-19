@@ -34,6 +34,12 @@ class TeamController extends Controller
     public function store(Request $request, ?int $id = null)
     {
 
+        $request->validate([
+            'name'=> 'required',
+            'designation'=> 'required',
+            'photo' => "required|image|mimes:jpeg,jpg,png,gif,webp,svg|max:2048"
+        ]);
+
         $data = $request->only(['name', 'designation','bio']);
         if ($id != null) {
             //user edit section is hare

@@ -31,6 +31,10 @@ class VideoGalleryController extends Controller
     public function store(Request $request, ?int $id = null)
     {
 
+        $request->validate([
+            'title' => 'required',
+            'video'=> ['required', 'regex:/<iframe\s+[^>]*src="https:\/\/www\.youtube\.com\/embed\/[a-zA-Z0-9_-]{11}"[^>]*><\/iframe>/'],
+        ]);
         $data = $request->only(['title', 'description','video']);
 
         if ($id != null) {

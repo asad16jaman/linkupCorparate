@@ -60,8 +60,12 @@
                                         </div>
                                     </div>
                                     <div class="col-md-9 col-12">
-                                        <input type="text" class="form-control p-1"  name="name" value="{{ $editTeam ? $editTeam->name : "" }}"
+                                        <input type="text" class="form-control p-1 @error('name') is-invalid
+                                        @enderror"  name="name" value="{{ $editTeam ? $editTeam->name : "" }}"
                                             placeholder="Enter Full Name">
+                                        @error('name')
+                                            <p class="text-danger">{{ $message }}</p>
+                                        @enderror
                                     </div>
                                 </div>
 
@@ -92,8 +96,12 @@
                                         </div>
                                     </div>
                                     <div class="col-md-9 col-12">
-                                        <input type="text" class="form-control p-1"  name="designation" value="{{ $editTeam ? $editTeam->designation : "" }}"
+                                        <input type="text" class="form-control p-1  @error('designation') is-invalid
+                                        @enderror"  name="designation" value="{{ $editTeam ? $editTeam->designation : "" }}"
                                             placeholder="Enter Designation">
+                                        @error('designation')
+                                            <p class="text-danger">{{ $message }}</p>
+                                        @enderror
                                     </div>
                                 </div>
 
@@ -111,6 +119,9 @@
                                                     <!-- hidden input -->
                                                     <input type="file" name="photo" id="imageInput" accept="image/*" style="display: none;">
                                                 </div>
+                                                @error('photo')
+                                                    <p class="text-danger text-center">{{ $message }}</p>
+                                                @enderror
                                             </div>
                             </div>
                         </div>

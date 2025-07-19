@@ -58,8 +58,12 @@
                                         </div>
                                     </div>
                                     <div class="col-md-9 col-12">
-                                        <input type="text" class="form-control p-1"  name="title" value="{{ $editgallery ? $editgallery->title :"" }}"
+                                        <input type="text" class="form-control p-1 @error('title') is-invalid
+                                        @enderror"  name="title" value="{{ $editgallery ? $editgallery->title :"" }}"
                                             placeholder="Enter Full Name">
+                                        @error('title')
+                                            <p class="text-danger">{{ $message }}</p>
+                                        @enderror
                                     </div>
                                 </div>
 
@@ -83,7 +87,12 @@
                                 
                                 <div class="mb-3">
                                     <label for="">Video Link :</label>
-                                    <textarea name="video" rows="4" placeholder="Enter Embeded Link" class="form-control"  id="">{{ $editgallery ? $editgallery->video : '' }}</textarea>
+                                    <textarea name="video" rows="4" placeholder="Enter Embeded Link" class="form-control @error('video') is-invalid
+                                    @enderror"  id="">{{ $editgallery ? $editgallery->video : '' }}</textarea>
+
+                                    @error('video')
+                                        <p class="text-danger">{{ $message }}</p>
+                                    @enderror
                                 </div>
                                 
                             </div>

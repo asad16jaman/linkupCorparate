@@ -23,7 +23,10 @@ Route::get("/service",[HomeController::class,"services"])->name("service");
 Route::get("/about",[HomeController::class,"about"])->name("about");
 Route::get("/project",[HomeController::class,"project"])->name("project");
 Route::get("/contact",[HomeController::class,"contact"])->name("contact");
-Route::get("/post",[HomeController::class,"storeContact"])->name("contact.store");
+Route::post("/savemessage",[HomeController::class,"storeContact"])->name("contact.store");
+Route::get("/teams",[HomeController::class,"getTeam"])->name("team");
+Route::get("/testimonial",[HomeController::class,"testimonial"])->name("testimonial");
+Route::get("/fqa",[HomeController::class,"fqaTemplate"])->name("fqa");
 
 
 

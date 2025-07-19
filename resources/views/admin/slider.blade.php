@@ -60,8 +60,12 @@
                                         </div>
                                     </div>
                                     <div class="col-md-9 col-12">
-                                        <input type="text" class="form-control p-1" name="title"
+                                        <input type="text" class="form-control p-1 @error('title') is-invalid
+                                        @enderror" name="title"
                                             value="{{ $editSlider ? $editSlider->title : "" }}" placeholder="Enter Title">
+                                        @error('title')
+                                            <p class="text-danger">{{ $message }}</p>
+                                        @enderror
                                     </div>
                                 </div>
 
@@ -73,8 +77,12 @@
                                         </div>
                                     </div>
                                     <div class="col-md-9 col-12">
-                                        <textarea class="form-control" name="description" placeholder="" id="comment"
+                                        <textarea class="form-control @error('description') is-invalid
+                                        @enderror" name="description" placeholder="" id="comment"
                                             rows="3">{{ $editSlider ? $editSlider->description : "" }}</textarea>
+                                        @error('description')
+                                            <p class="text-danger">{{ $message }}</p>
+                                        @enderror
                                     </div>
                                 </div>
                             </div>
@@ -94,6 +102,9 @@
                                         <input type="file" name="img" id="imageInput" name="image" accept="image/*"
                                             style="display: none;">
                                     </div>
+                                    @error('img')
+                                            <p class="text-danger text-center mt-1">{{ $message }}</p>
+                                        @enderror
                                 </div>
 
 

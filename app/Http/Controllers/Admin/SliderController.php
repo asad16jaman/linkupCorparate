@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Validation\Rules\File;
 
 class SliderController extends Controller
 {
@@ -32,6 +33,18 @@ class SliderController extends Controller
     public function store(Request $request, ?int $id = null)
     {
 
+        $request->validate([
+            "title"=> "required",
+            "description"=> "required",
+            'img' => "required|image|mimes:jpeg,jpg,png,gif,webp,svg|max:2048"
+        ]);
+
+
+
+     
+
+
+
         $data = $request->only(['title', 'description']);
         if ($id != null) {
 
@@ -44,7 +57,6 @@ class SliderController extends Controller
                     Storage::delete($currentEditUser->img);
                 }
 
-
                 $path = $request->file('img')->store('slider');
                 $data['img'] = $path;
             }
@@ -53,8 +65,6 @@ class SliderController extends Controller
             return redirect()->route('admin.slider', ['page' => $request->query('page'), 'search' => $request->query('search')])->with('success', "Successfully updated");
         }
 
-
-        
 
         if ($request->hasFile('img')) {
             $path = $request->file('img')->store('slider');

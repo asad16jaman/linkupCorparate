@@ -54,8 +54,12 @@
                                         </div>
                                     </div>
                                     <div class="col-md-9 col-12">
-                                        <input type="text" class="form-control p-1" {{ $editUser ? 'readonly' : '' }} name="username" value="{{ $editUser ? $editUser->username : "" }}"
+                                        <input type="text" class="form-control p-1 @error('username') is-invalid
+                                        @enderror" {{ $editUser ? 'readonly' : '' }} name="username" value="{{ $editUser ? $editUser->username : "" }}"
                                             placeholder="Enter Username">
+                                        @error('username')
+                                            <p class="text-danger">{{ $message }}</p>
+                                        @enderror
                                     </div>
                                 </div>
 
@@ -80,8 +84,11 @@
                                         </div>
                                     </div>
                                     <div class="col-md-9 col-12">
-                                        <input type="email" value="{{ $editUser ? $editUser->email : "" }}" name="email" class="form-control p-1" id="" placeholder="Enter Email">
-
+                                        <input type="email" value="{{ $editUser ? $editUser->email : "" }}" name="email" class="form-control p-1 @error('email') is-invalid
+                                        @enderror" id="" placeholder="Enter Email">
+                                       @error('email')
+                                            <p class="text-danger">{{ $message }}</p>
+                                        @enderror
                                     </div>
                                 </div>
                                 <div class="row">
