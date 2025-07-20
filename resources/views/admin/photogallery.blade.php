@@ -32,7 +32,9 @@
 </style>
 @endsection
 
-
+@section('sidebar')
+        @include('admin.layout.sidebar',['page'=>'gallery'])
+@endsection
 
 @section('bodyContent')
 

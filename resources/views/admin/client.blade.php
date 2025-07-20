@@ -26,13 +26,13 @@
     .headbg > tr > th{
         background-color: #3c5236;
         color: #fff;
+        padding: 2px !important;
+        margin-bottom: 2px;
     }
 </style>
 @endsection
 
-@php
-    $editcategory = null
-@endphp
+
 
 @section('bodyContent')
 
@@ -120,8 +120,8 @@
                                                     <input type="file" name="photo" id="imageInput" accept="image/*" style="display: none;">
                                                 </div>
                                                 @error('photo')
-                                            <p class="text-danger text-center">{{ $message }}</p>
-                                        @enderror
+                                                    <p class="text-danger text-center">{{ $message }}</p>
+                                                 @enderror
                                             </div>
                             </div>
                         </div>

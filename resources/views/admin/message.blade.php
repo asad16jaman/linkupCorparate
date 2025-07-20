@@ -2,6 +2,7 @@
 
 @section('title', 'Admin Page')
 
+
 @section('style')
     <style>
         .table>tbody>tr>td {
@@ -27,13 +28,13 @@
             object-fit: fill;
         }
 
-        .headbg>tr>th {
-            background-color: #3c5236;
-            color: #fff;
-        }
-        .page-inner{
-            
-        }
+        
+        .headbg > tr > th{
+        background-color: #3c5236;
+        color: #fff;
+        padding: 2px !important;
+        margin-bottom: 2px;
+    }
     </style>
 @endsection
 
@@ -58,7 +59,7 @@
                                                 aria-describedby="basic-datatables_info">
                                                 <thead class="headbg">
                                                     <tr role="row bg-dark">
-                                                        <th>SL NO:</th>
+                                                        <th style="width: 136.031px;">SL NO:</th>
                                                         <th>Name</th>
                                                         <th>Phone</th>
                                                         <th>Email</th>

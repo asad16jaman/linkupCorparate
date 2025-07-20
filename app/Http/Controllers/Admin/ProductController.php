@@ -30,16 +30,50 @@ class ProductController extends Controller
         }else{
             $products = Product::with('category')->simplePaginate(3);
         }; 
-        return view('admin.product',compact(['categories','products','editItem']));
+
+     
+        
+        
+        return view('admin.productView',compact(['categories','products','editItem']));
     }
 
+
+
+
     public function store(Request $request,?int $id=null){
+
+
+        $request->validate([
+            'name'=> 'required',
+            'category_id'=> 'required',
+            'description'=> 'required',
+            'picture' => 'nullable|image|mimes:jpeg,jpg,png,gif,webp,svg'
+
+        ]);
 
         $data = $request->only(['name','description','logn_description','category_id']);
 
         if(!is_null($id)){
+
+            $currentEditUser = Product::find($id);
+
+            if ($request->hasFile('picture')) {
+                //delete if user already have profile picture...
+                if ($currentEditUser->picture != null) {
+                    Storage::delete($currentEditUser->picture);
+                }
+                $path = $request->file('picture')->store('productthum');
+                $data['picture'] = $path;
+            }
+
             Product::where('id',$id)->update($data);
             return redirect()->route('admin.product',['page'=>request()->query('page'),'search'=>request()->query('search')])->with('success','Successfully edit');
+        }
+
+
+        if($request->hasFile('picture')){
+             $path = $request->file('picture')->store('productthum');
+            $data['picture'] = $path;
         }
 
         //creating product
@@ -47,22 +81,22 @@ class ProductController extends Controller
 
         //creating image from product
         
-        if($request->hasFile('img')){
-            $allFile = $request->file('img');
-            foreach($allFile as $file){
-                $path = $file->store('product');
-                ProductImage::create([
-                    'product_id' => $product->id,
-                    'img' => $path
-                ]);
-            }
-        }
+        // if($request->hasFile('img')){
+        //     $allFile = $request->file('img');
+        //     foreach($allFile as $file){
+        //         $path = $file->store('product');
+        //         ProductImage::create([
+        //             'product_id' => $product->id,
+        //             'img' => $path
+        //         ]);
+        //     }
+        // }
 
-        return response()->json([
-            "success" => true,
-        ]);
-      
-        
+        // return response()->json([
+        //     "success" => true,
+        // ]);
+
+        return redirect()->back()->with('success','Successfully created Product');
     }
 
 
@@ -73,7 +107,13 @@ class ProductController extends Controller
             Storage::delete($image->img);
             $image->delete();
         }
-        Product::find($id)->delete();
+
+        
+        $deleteProduct = Product::find($id);
+        if($deleteProduct){
+            Storage::delete($deleteProduct->picture);
+            $deleteProduct->delete();
+        }
         return redirect()->route('admin.product')->with('success','successfully deleted');
         
     }

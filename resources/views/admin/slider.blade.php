@@ -36,6 +36,8 @@
     </style>
 @endsection
 
+
+
 @section('bodyContent')
 
     <div class="container">

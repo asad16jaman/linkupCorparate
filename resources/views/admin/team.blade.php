@@ -26,13 +26,13 @@
     .headbg > tr > th{
         background-color: #3c5236;
         color: #fff;
+        padding: 2px !important;
+        margin-bottom: 2px;
     }
 </style>
 @endsection
 
-@php
-    $editcategory = null
-@endphp
+
 
 @section('bodyContent')
 

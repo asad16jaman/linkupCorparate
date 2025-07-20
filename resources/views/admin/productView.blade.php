@@ -88,8 +88,13 @@
                                         </div>
                                     </div>
                                     <div class="col-md-9 col-12">
-                                        <input type="text" class="form-control p-1"  name="name" value="{{ $editItem ? $editItem->name : "" }}"
+                                        <input type="text" class="form-control p-1 @error('name') is-invalid
+                                        @enderror"  name="name" value="{{ $editItem ? $editItem->name : "" }}"
                                             placeholder="Enter Product Name">
+                                        @error('name')
+                                            <p class="text-danger">{{  $message }}</p>
+                                        @enderror
+                                        
                                     </div>
                                 </div>
 
@@ -101,7 +106,11 @@
                                         </div>
                                     </div>
                                     <div class="col-md-9 col-12">
-                                        <textarea name="description" class="form-control" rows="2" id="">{{ $editItem ? $editItem->description : "" }}</textarea>
+                                        <textarea name="description" class="form-control @error('description') is-invalid
+                                        @enderror" rows="2" id="">{{ $editItem ? $editItem->description : "" }}</textarea>
+                                        @error('name')
+                                            <p class="text-danger">{{ $message }}</p>
+                                        @enderror
                                     </div>
                                 </div>
 
@@ -145,8 +154,9 @@
                                         </select>
                                     </div>
                                 </div>
-                                @if($editItem == null)
-                                <div class="row">
+                               
+                                <!-- multiple picture upload field hare start -->
+                                <!-- <div class="row">
                                     
                                         <div class="col-md-3 col-12">
                                             <div class="">
@@ -162,16 +172,28 @@
                                     <div class="col-12 mt-3">
                                         <div class="productimages d-flex flex-wrap gap-2"></div>
                                     </div>
-                                </div>
+                                </div> -->
 
-                                @else
-                                <div class="row mt-3">
-                                    <div class="col-md-12">
-                                        If You Want to edit Image. You Need To Delete Product And Add New Product With New Image
-                                    </div>
-                                </div>
+                                 <!-- multiple picture upload field hare end -->
 
-                                @endif
+                                <div class="row">
+                                    <div class="col-md-12 col-12 d-flex justify-content-center mt-1">
+                                                    <label for="imageInput" style="cursor: pointer;">
+                                                        <!-- (placeholder) -->
+                                                        <img id="previewImage" 
+                                                            src="{{ ($editItem && $editItem->picture) ?  asset('storage/'.$editItem->picture) : asset('assets/admin/img/demoUpload.jpg') }}" 
+                                                            alt="Demo Image" 
+                                                            class="profileImg"
+                                                            style="">
+                                                    </label>
+
+                                                    <!-- hidden input -->
+                                                    <input type="file" name="picture" id="imageInput" accept="image/*" style="display: none;">
+                                                </div>
+                                                @error('photo')
+                                                    <p class="text-danger text-center">{{ $message }}</p>
+                                                 @enderror
+                                </div>
                             </div>
                         </div>
 
@@ -214,11 +236,12 @@
                                                 <thead class="headbg">
                                                     <tr role="row bg-dark" >
                                                         <th style="width: 136.031px;">SL NO:</th>
+                                                        <th style="width: 35.875px;">Image</th>
                                                         <th style="width: 214.469px;">Name</th>
                                                         <th style="width: 214.469px;">Description</th>
                                                         <th style="width: 214.469px;">Long Des.</th>
                                                         <th style="width: 101.219px;">Category</th>
-                                                        <th style="width: 35.875px;">Image</th>
+                                                        
                                                         <th style="width: 81.375px;">Action</th>
                                                     </tr>
                                                 </thead>
@@ -229,14 +252,16 @@
                                                     <tr role="row" class="odd" >
                                                         <td class="sorting_1">{{ $loop->iteration }}</td>
                                                         <td>
-                                                        
-                                                            {{ $product->name }}
+                                                            <a href="">
+                                                                <img class="tablepicture" src="{{ $product->picture ? asset('storage/'.$product->picture)  : asset('assets/admin/img/demoProfile.png') }}" alt="user profile picture">
+                                                            </a>
                                                         </td>
+                                                        <td>{{ $product->name }}</td>
                                                         <td>{{ substr($product->description,0,50) }}...</td>
                                                         <td>{{ substr($product->logn_description,0,50) }}...</td>
                                                         
                                                         <td>{{ $product->category->name }}</td>
-                                                        <td><a href="">Image</a></td>
+                                                        
                                                         <td class="d-flex justify-content-center">
                                                             
                                                             <a href="{{ route('admin.product',['id'=> $product->id,'page'=>request()->query('page'),'search'=>request()->query('search')]) }}" class="btn btn-info p-1 me-1">
@@ -295,48 +320,64 @@
     
 
 
-    @if($editItem == null)
+    const imageInput = document.getElementById('imageInput');
+    const previewImage = document.getElementById('previewImage');
+
+    imageInput.addEventListener('change', function () {
+        const file = this.files[0];
+        if (file) {
+            const reader = new FileReader();
+
+            reader.onload = function (e) {
+                previewImage.src = e.target.result;
+            };
+
+            reader.readAsDataURL(file);
+        }
+    })
+
+   
     //handle product multiple image start hare........................................
 
     
-    const input = document.getElementById('productImages');
-    const previewContainer = document.querySelector('.productimages');
-    let imageFiles = [];
+    // const input = document.getElementById('productImages');
+    // const previewContainer = document.querySelector('.productimages');
+    // let imageFiles = [];
 
-    input.addEventListener('change', function (e) {
-        const files = Array.from(e.target.files);
-        files.forEach(file => {
-            if (!file.type.startsWith('image/')) return;
+    // input.addEventListener('change', function (e) {
+    //     const files = Array.from(e.target.files);
+    //     files.forEach(file => {
+    //         if (!file.type.startsWith('image/')) return;
 
-            const reader = new FileReader();
-            reader.onload = function (event) {
-                const preview = document.createElement('div');
-                preview.classList.add('preview-img');
+    //         const reader = new FileReader();
+    //         reader.onload = function (event) {
+    //             const preview = document.createElement('div');
+    //             preview.classList.add('preview-img');
 
-                preview.innerHTML = `
-                    <img src="${event.target.result}" alt="preview">
-                    <button class="remove-btn">&times;</button>
-                `;
+    //             preview.innerHTML = `
+    //                 <img src="${event.target.result}" alt="preview">
+    //                 <button class="remove-btn">&times;</button>
+    //             `;
 
-                // Remove on click
-                preview.querySelector('.remove-btn').addEventListener('click', function () {
-                    const index = imageFiles.indexOf(file);
-                    if (index > -1) {
-                        imageFiles.splice(index, 1);
-                    }
-                    preview.remove();
-                });
+    //             // Remove on click
+    //             preview.querySelector('.remove-btn').addEventListener('click', function () {
+    //                 const index = imageFiles.indexOf(file);
+    //                 if (index > -1) {
+    //                     imageFiles.splice(index, 1);
+    //                 }
+    //                 preview.remove();
+    //             });
 
-                previewContainer.appendChild(preview);
-            };
-            reader.readAsDataURL(file);
+    //             previewContainer.appendChild(preview);
+    //         };
+    //         reader.readAsDataURL(file);
 
-            imageFiles.push(file);
-        });
+    //         imageFiles.push(file);
+    //     });
 
-        // Reset input to allow re-upload of same file
-        input.value = '';
-    });
+    //     // Reset input to allow re-upload of same file
+    //     input.value = '';
+    // });
 
     
 
@@ -346,31 +387,31 @@
 
     // form submission .......................
 
-    document.getElementById('productForm').addEventListener('submit', function(e) {
-    e.preventDefault(); 
-    const form = e.target;
-    const formData = new FormData(form);
+    // document.getElementById('productForm').addEventListener('submit', function(e) {
+    // e.preventDefault(); 
+    // const form = e.target;
+    // const formData = new FormData(form);
 
-    // adding file 
-    imageFiles.forEach(file => {
-        formData.append('img[]', file);
-    });
+    // // adding file 
+    // imageFiles.forEach(file => {
+    //     formData.append('img[]', file);
+    // });
 
-    fetch("{{ route('admin.product') }}", {
-        method: 'POST',
-        body: formData,
-    })
-    .then(res => res.json())
-    .then(data => {
+    // fetch("", {
+    //     method: 'POST',
+    //     body: formData,
+    // })
+    // .then(res => res.json())
+    // .then(data => {
         
-        window.location.href = "{{ route('admin.product') }}"
-    })
-    .catch(error => {
-        console.error('Error:', error);
-    });
-});
+    //     window.location.href = ""
+    // })
+    // .catch(error => {
+    //     console.error('Error:', error);
+    // });
+    // });
 
-@endif
+
 
     
 </script>

@@ -88,18 +88,12 @@
     <!-- jQuery Sparkline -->
     <script src="{{ asset('assets/admin/js/plugin/jquery.sparkline/jquery.sparkline.min.js') }}"></script>
 
-    <!-- Chart Circle -->
-    <script src="{{ asset('assets/admin/js/plugin/chart-circle/circles.min.js') }}"></script>
 
-    <!-- Datatables -->
-    <script src="{{ asset('assets/admin/js/plugin/datatables/datatables.min.js') }}"></script>
 
     <!-- Bootstrap Notify -->
     <script src="{{ asset('assets/admin/js/plugin/bootstrap-notify/bootstrap-notify.min.js') }}"></script>
 
-    <!-- jQuery Vector Maps -->
-    <script src="{{ asset('assets/admin/js/plugin/jsvectormap/jsvectormap.min.js') }}"></script>
-    <script src="{{ asset('assets/admin/js/plugin/jsvectormap/world.js') }}"></script>
+
 
     <!-- Sweet Alert -->
     <script src="{{ asset('assets/admin/js/plugin/sweetalert/sweetalert.min.js') }}"></script>

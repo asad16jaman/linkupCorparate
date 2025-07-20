@@ -34,9 +34,7 @@
     </style>
 @endsection
 
-@php
-    $editcategory = null
-@endphp
+
 
 @section('bodyContent')
 
