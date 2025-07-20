@@ -232,18 +232,6 @@
 @push('script')
 <script>
 
-    // document.getElementById('searchform').addEventListener('submit',function(e){
-    //     e.preventDefault();
-    //     let searchValue = e.target['search'].value ; 
-    //     let baseUrl = "{{ url()->current() }}"; // current route path without query
-
-    //     const url = new URL(baseUrl, window.location.origin);
-       
-        
-    //     url.searchParams.set('search', searchValue);
-    //     window.location.href = url.toString();
-    // })
-
 
     const imageInput = document.getElementById('imageInput');
     const previewImage = document.getElementById('previewImage');
