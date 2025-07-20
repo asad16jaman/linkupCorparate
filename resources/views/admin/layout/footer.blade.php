@@ -3,7 +3,7 @@
             
             <div class="copyright">
               2022, made  <i class="fa fa-heart heart text-danger"></i> by
-              <a href="https://linktechbd.com/">Link Up Technology</a>
+              <a href="https://linktechbd.com/">{{ $company->name }}</a>
             </div>
             <div>
               .

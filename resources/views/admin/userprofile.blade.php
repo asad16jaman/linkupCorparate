@@ -18,6 +18,10 @@
 </style>
 @endsection
 
+@section('pageside')
+  @include('admin.layout.sidebar',['page' => 'profile'])
+@endsection
+
 @section('bodyContent')
 
     <div class="container">

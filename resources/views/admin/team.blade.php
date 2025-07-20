@@ -32,6 +32,10 @@
 </style>
 @endsection
 
+@section('pageside')
+  @include('admin.layout.sidebar',['page' => 'team'])
+@endsection
+
 
 
 @section('bodyContent')

@@ -34,7 +34,9 @@
     </style>
 @endsection
 
-
+@section('pageside')
+  @include('admin.layout.sidebar',['page' => 'about'])
+@endsection
 
 @section('bodyContent')
 

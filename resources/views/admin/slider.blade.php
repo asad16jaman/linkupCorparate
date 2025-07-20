@@ -36,7 +36,9 @@
     </style>
 @endsection
 
-
+@section('pageside')
+  @include('admin.layout.sidebar',['page' => 'slider'])
+@endsection
 
 @section('bodyContent')
 

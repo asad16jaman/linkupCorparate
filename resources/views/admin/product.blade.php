@@ -63,10 +63,6 @@
 </style>
 @endsection
 
-@section('pageside')
-  @include('admin.layout.sidebar',['page' => 'project'])
-@endsection
-
 @section('bodyContent')
 
     <div class="container">

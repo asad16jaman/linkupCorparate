@@ -211,6 +211,10 @@
 
 @endsection
 
+@section('pageside')
+  @include('admin.layout.sidebar',['page' => 'company'])
+@endsection
+
 @push('script')
 <script>
     

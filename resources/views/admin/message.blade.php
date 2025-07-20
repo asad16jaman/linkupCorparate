@@ -2,6 +2,9 @@
 
 @section('title', 'Admin Page')
 
+@section('pageside')
+  @include('admin.layout.sidebar',['page' => 'contact'])
+@endsection
 
 @section('style')
     <style>

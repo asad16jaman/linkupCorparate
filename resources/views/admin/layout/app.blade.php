@@ -51,7 +51,8 @@
   <body>
     <div class="wrapper">
       <!-- Sidebar -->
-        @include('admin.layout.sidebar')
+        @yield('pageside')
+        
       <!-- End Sidebar -->
 
       <div class="main-panel">
